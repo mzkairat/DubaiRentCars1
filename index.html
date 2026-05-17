@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
     <title>DubaiRentCars | Premium Supercar Rental</title>
 
     <!-- TRACKING PIXELS - Add your pixels in tracking-pixels.html -->
@@ -514,8 +515,15 @@
             background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
         }
 
-        .car-slides { display: flex; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); height: 100%; }
-        .car-slides img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
+        .car-slides {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            touch-action: pan-y;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .car-slides img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; pointer-events: none; }
 
         .slider-nav {
             position: absolute;
@@ -1249,10 +1257,19 @@
             .btn-book { width: 100%; justify-content: center; }
             .security-badges { flex-direction: column; align-items: center; padding: 30px 20px; }
             .footer { padding: 40px 20px 20px; }
-            .modal { max-width: 100%; margin: 10px; border-radius: 16px; }
-            .modal-header { padding: 18px 20px; }
-            .modal-body { padding: 20px; }
+            .modal { max-width: 100%; margin: 0; border-radius: 0; width: 100%; height: 100dvh; max-height: 100dvh; display: flex; flex-direction: column; }
+            .modal-header { padding: 16px 20px; flex-shrink: 0; position: sticky; top: 0; z-index: 10; }
             .modal-header h2 { font-size: 18px; }
+            .modal-body { padding: 20px; overflow-y: auto; -webkit-overflow-scrolling: touch; flex: 1; }
+            .modal-overlay { padding: 0; align-items: stretch; }
+            .form-input, textarea.form-input, select.form-input { font-size: 16px !important; }
+            .booking-car-summary { flex-direction: column; text-align: center; }
+            .booking-car-summary img { width: 100%; max-height: 180px; object-fit: cover; border-radius: 12px; }
+            .booking-car-info { padding: 12px 0 0; }
+            .payment-methods { gap: 10px; }
+            .payment-method { padding: 14px; }
+            .crypto-box { padding: 20px 16px; }
+            .countdown-container { margin-top: 16px; }
             .countdown-circle { width: 120px; height: 120px; }
             .countdown-circle svg { width: 120px; height: 120px; }
             .countdown-time .time { font-size: 26px; }
@@ -1812,6 +1829,13 @@
             }).join('');
 
             document.getElementById('resultsCount').textContent = filteredCars.length;
+
+            // Re-init touch handlers for newly rendered sliders
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.car-image-slider').forEach(slider => {
+                    if (!slider.dataset.touchInit) initSliderTouch(slider);
+                });
+            });
         }
 
         function getSliderContainer(btn) { return btn.closest('.car-image-slider'); }
@@ -1846,6 +1870,58 @@
             slider.querySelector('.car-slides').style.transform = `translateX(-${newIdx * 100}%)`;
             dots.forEach(d => d.classList.remove('active'));
             dots[newIdx].classList.add('active');
+        }
+
+        // Touch swipe for car sliders - initialized in renderCars()
+
+        function initSliderTouch(slider) {
+            if (slider.dataset.touchInit) return;
+            slider.dataset.touchInit = 'true';
+
+            let startX = 0, startY = 0, isDragging = false, currentTranslate = 0;
+
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                const slides = slider.querySelector('.car-slides');
+                const transform = slides.style.transform || 'translateX(0%)';
+                currentTranslate = -parseFloat(transform.replace('translateX(', '').replace('%)', '')) * slider.offsetWidth / 100;
+                slides.style.transition = 'none';
+            }, { passive: true });
+
+            slider.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const deltaX = e.touches[0].clientX - startX;
+                const deltaY = Math.abs(e.touches[0].clientY - startY);
+                if (Math.abs(deltaX) > deltaY) {
+                    e.preventDefault();
+                    const slides = slider.querySelector('.car-slides');
+                    const newTranslate = currentTranslate + deltaX;
+                    slides.style.transform = `translateX(${newTranslate}px)`;
+                }
+            }, { passive: false });
+
+            slider.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                const slides = slider.querySelector('.car-slides');
+                slides.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+
+                const endX = e.changedTouches[0].clientX;
+                const deltaX = endX - startX;
+                const dots = slider.querySelectorAll('.slider-dot');
+                let idx = getCurrentSlideIndex(slider);
+
+                if (Math.abs(deltaX) > 50) {
+                    if (deltaX < 0 && idx < dots.length - 1) idx++;
+                    else if (deltaX > 0 && idx > 0) idx--;
+                }
+
+                slides.style.transform = `translateX(-${idx * 100}%)`;
+                dots.forEach(d => d.classList.remove('active'));
+                dots[idx].classList.add('active');
+            }, { passive: true });
         }
 
         document.querySelectorAll('.brand-btn').forEach(btn => {
