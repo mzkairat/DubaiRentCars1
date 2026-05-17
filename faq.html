@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | DubaiRentCars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="tracking-pixels.js"></script>
+    <style>
+        :root {
+            --bg-primary: #f8fafc; --bg-secondary: #ffffff; --accent: #2563eb; --accent-light: #3b82f6;
+            --text-primary: #0f172a; --text-secondary: #475569; --text-muted: #94a3b8;
+            --border: #e2e8f0; --border-light: #f1f5f9; --success: #059669; --danger: #dc2626;
+            --gradient-1: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06); --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
+
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .header.scrolled { box-shadow: var(--shadow-md); }
+        .header-inner { max-width: 1440px; margin: 0 auto; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 44px; height: 44px; background: var(--gradient-1); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .logo-icon svg { width: 26px; height: 26px; fill: white; }
+        .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; color: var(--text-primary); }
+        .logo-text span { color: var(--accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; }
+
+        .page-hero { padding: 120px 30px 60px; background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%); text-align: center; }
+        .page-hero h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 16px; }
+        .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+        .page-content { max-width: 800px; margin: 0 auto; padding: 60px 30px; }
+
+        .faq-categories { margin-bottom: 40px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .faq-cat-btn { padding: 8px 20px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 50px; font-size: 14px; color: var(--text-secondary); cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif; }
+        .faq-cat-btn:hover, .faq-cat-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+        .faq-item { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.3s; }
+        .faq-item:hover { border-color: var(--accent-light); }
+        .faq-question { padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 16px; color: var(--text-primary); user-select: none; }
+        .faq-question:hover { color: var(--accent); }
+        .faq-icon { width: 24px; height: 24px; border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--accent); transition: all 0.3s; flex-shrink: 0; margin-left: 16px; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); border-color: var(--accent); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .faq-answer-inner { padding: 0 24px 20px; color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+        .faq-item.active .faq-answer { max-height: 500px; }
+
+        .contact-box { background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%); border: 1px solid var(--border); border-radius: 16px; padding: 40px; text-align: center; margin-top: 60px; }
+        .contact-box h3 { font-size: 24px; margin-bottom: 12px; }
+        .contact-box p { color: var(--text-secondary); margin-bottom: 20px; }
+        .contact-box a { display: inline-block; padding: 12px 30px; background: var(--gradient-1); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s; }
+        .contact-box a:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.3); }
+
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 30px 30px; margin-top: 80px; }
+        .footer-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand p { color: var(--text-secondary); font-size: 14px; margin-top: 16px; }
+        .footer-col h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .footer-col a { display: block; color: var(--text-secondary); text-decoration: none; font-size: 14px; padding: 6px 0; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { max-width: 1440px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; }
+        .footer-bottom p { color: var(--text-muted); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .header-inner { padding: 0 16px; }
+            .page-hero { padding: 100px 20px 40px; }
+            .page-content { padding: 40px 20px; }
+            .footer-inner { grid-template-columns: 1fr; }
+            .faq-question { padding: 16px 20px; font-size: 15px; }
+            .faq-answer-inner { padding: 0 20px 16px; }
+            .contact-box { padding: 30px 20px; }
+        }
+        @media (max-width: 480px) {
+            .logo-text { font-size: 18px; }
+            .logo-icon { width: 36px; height: 36px; }
+            .page-hero h1 { font-size: 28px; }
+            .faq-categories { gap: 8px; }
+            .faq-cat-btn { padding: 6px 14px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                </div>
+                <div class="logo-text">Dubai<span>Rent</span>Cars</div>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Supercars</a></li>
+                    <li><a href="index.html">Luxury</a></li>
+                    <li><a href="index.html">Sports</a></li>
+                    <li><a href="index.html">SUVs</a></li>
+                    <li><a href="index.html#fleet">Fleet</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle">&#9776;</button>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1>Frequently Asked <span style="color: var(--accent);">Questions</span></h1>
+        <p>Find answers to common questions about our supercar rental services.</p>
+    </section>
+
+    <main class="page-content">
+
+        <div class="faq-categories">
+            <button class="faq-cat-btn active" onclick="filterFaq('all', this)">All</button>
+            <button class="faq-cat-btn" onclick="filterFaq('booking', this)">Booking</button>
+            <button class="faq-cat-btn" onclick="filterFaq('payment', this)">Payment</button>
+            <button class="faq-cat-btn" onclick="filterFaq('delivery', this)">Delivery</button>
+            <button class="faq-cat-btn" onclick="filterFaq('insurance', this)">Insurance</button>
+        </div>
+
+        <div id="faqContainer">
+
+            <div class="faq-item" data-category="booking">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How do I book a supercar?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Simply browse our fleet, select your desired car, click "Book Now," fill in your details (name, phone, email, delivery address, and rental duration), and proceed to payment. You'll receive a confirmation email immediately after booking.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="booking">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What is the minimum rental period?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">The minimum rental period is 1 day (24 hours). You can also rent by the week or month for better rates.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="booking">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I extend my rental period?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes! Contact us at least 24 hours before your rental ends to extend. Extensions are subject to vehicle availability and will be charged at the same daily rate.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="booking">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What documents do I need to rent a car?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">You need a valid driving license from your country of origin, an International Driving Permit (if required), and a valid passport or Emirates ID. The minimum age is 21 years.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="booking">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I cancel my booking?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes. Full refund if cancelled 48+ hours before delivery. 50% refund for 24-48 hours. No refund for cancellations less than 24 hours before delivery.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="payment">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What payment methods do you accept?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">We accept Credit/Debit Cards (Visa, Mastercard, American Express) and USDT (Tether) via the TRC20 network. All prices are in USD.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="payment">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Is a security deposit required?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">No! Unlike most rental companies, we do not require any security deposit. You only pay the rental rate for the number of days you book.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="payment">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How does USDT (crypto) payment work?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Select USDT as your payment method, scan the QR code or copy our wallet address, and send the exact amount via the TRC20 network. Your booking will be confirmed once the transaction is verified on the blockchain.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="payment">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Are there any hidden fees?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">No hidden fees. The price you see is the price you pay. Delivery is free. Additional charges only apply for extra kilometers beyond 250 km/day (AED 5/km) or traffic fines.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="delivery">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Do you deliver the car to my location?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes! We offer free doorstep delivery anywhere in Dubai. Simply provide your hotel, apartment, or any address during booking.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="delivery">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How long does delivery take?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">We deliver at your scheduled time. We recommend booking at least 2 hours in advance for same-day delivery. A 30-minute grace period applies.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="delivery">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I pick up the car myself?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes, you can pick up the car from our location in Dubai. Let us know your preference during booking.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="insurance">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Is the car insured?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes, all our vehicles come with comprehensive insurance coverage. In case of damage, a deductible of AED 3,000 applies.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="insurance">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What happens if I get into an accident?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Immediately contact the police and obtain a police report. Then notify us within 24 hours. Our insurance will cover the damage minus the deductible amount.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="insurance">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Am I responsible for traffic fines?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes, any traffic fines or violations incurred during your rental period are your responsibility. We will notify you and provide the details.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="booking">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What is the mileage limit?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Standard mileage is 250 km per day. Additional kilometers are charged at AED 5 per km.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="booking">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I drive the car outside Dubai?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes, you can drive anywhere within the UAE. Driving outside the UAE is not permitted. Off-road driving is strictly prohibited.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="payment">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Why are your prices in USD?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">We price in USD for international convenience and to simplify crypto payments. The USD is pegged to the AED, so the value is stable.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="contact-box">
+            <h3>Still have questions?</h3>
+            <p>Can't find what you're looking for? Contact our support team.</p>
+            <a href="mailto:support@rentcars.ae">Email Us</a>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg></div>
+                    <div class="logo-text">Dubai<span>Rent</span>Cars</div>
+                </a>
+                <p>Dubai's premier supercar rental service.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Fleet</h4>
+                <a href="index.html">Supercars</a>
+                <a href="index.html">Luxury Cars</a>
+                <a href="index.html">Sports Cars</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="mailto:support@rentcars.ae">support@rentcars.ae</a>
+                <a href="#">Dubai, UAE</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DubaiRentCars - All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
+        }
+
+        function filterFaq(category, btn) {
+            document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

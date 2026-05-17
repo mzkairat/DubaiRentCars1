@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | DubaiRentCars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="tracking-pixels.js"></script>
+    <style>
+        :root {
+            --bg-primary: #f8fafc; --bg-secondary: #ffffff; --accent: #2563eb; --accent-light: #3b82f6;
+            --text-primary: #0f172a; --text-secondary: #475569; --text-muted: #94a3b8;
+            --border: #e2e8f0; --border-light: #f1f5f9; --success: #059669; --danger: #dc2626;
+            --gradient-1: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
+
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .header.scrolled { box-shadow: var(--shadow-md); }
+        .header-inner { max-width: 1440px; margin: 0 auto; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 44px; height: 44px; background: var(--gradient-1); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .logo-icon svg { width: 26px; height: 26px; fill: white; }
+        .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; color: var(--text-primary); }
+        .logo-text span { color: var(--accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; }
+
+        .page-hero { padding: 120px 30px 60px; background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%); text-align: center; }
+        .page-hero h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 16px; }
+        .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+        .page-content { max-width: 900px; margin: 0 auto; padding: 60px 30px; }
+        .content-section { margin-bottom: 40px; }
+        .content-section h2 { font-size: 24px; font-weight: 700; margin-bottom: 16px; color: var(--accent); padding-bottom: 8px; border-bottom: 2px solid var(--border-light); }
+        .content-section h3 { font-size: 18px; font-weight: 600; margin: 20px 0 10px; }
+        .content-section p { color: var(--text-secondary); margin-bottom: 12px; font-size: 15px; }
+        .content-section ul { margin: 12px 0; padding-left: 24px; }
+        .content-section li { color: var(--text-secondary); margin-bottom: 6px; font-size: 15px; }
+        .content-section li::marker { color: var(--accent); }
+
+        .last-updated { display: inline-block; padding: 6px 14px; background: rgba(37,99,235,0.08); border-radius: 50px; font-size: 13px; color: var(--accent); margin-bottom: 30px; }
+
+        .privacy-box { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 20px 0; }
+        .privacy-box h4 { color: var(--accent); margin-bottom: 8px; }
+
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 30px 30px; margin-top: 80px; }
+        .footer-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand p { color: var(--text-secondary); font-size: 14px; margin-top: 16px; }
+        .footer-col h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .footer-col a { display: block; color: var(--text-secondary); text-decoration: none; font-size: 14px; padding: 6px 0; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { max-width: 1440px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; }
+        .footer-bottom p { color: var(--text-muted); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .header-inner { padding: 0 16px; }
+            .page-hero { padding: 100px 20px 40px; }
+            .page-content { padding: 40px 20px; }
+            .footer-inner { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .logo-text { font-size: 18px; }
+            .logo-icon { width: 36px; height: 36px; }
+            .page-hero h1 { font-size: 28px; }
+            .content-section h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                </div>
+                <div class="logo-text">Dubai<span>Rent</span>Cars</div>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Supercars</a></li>
+                    <li><a href="index.html">Luxury</a></li>
+                    <li><a href="index.html">Sports</a></li>
+                    <li><a href="index.html">SUVs</a></li>
+                    <li><a href="index.html#fleet">Fleet</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle">&#9776;</button>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1>Privacy <span style="color: var(--accent);">Policy</span></h1>
+        <p>How we collect, use, and protect your personal information.</p>
+    </section>
+
+    <main class="page-content">
+        <span class="last-updated">Last updated: May 2026</span>
+
+        <div class="content-section">
+            <h2>1. Introduction</h2>
+            <p>DubaiRentCars ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services.</p>
+            <p>By using our website, you consent to the practices described in this policy.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>2. Information We Collect</h2>
+
+            <h3>2.1 Personal Information</h3>
+            <p>When you book a vehicle, we collect:</p>
+            <ul>
+                <li>Full name</li>
+                <li>Phone number</li>
+                <li>Email address</li>
+                <li>Delivery address</li>
+                <li>Preferred delivery date</li>
+            </ul>
+
+            <h3>2.2 Payment Information</h3>
+            <p>For card payments, we process payment details through secure third-party payment processors. We do not store your full card number or CVV on our servers.</p>
+            <p>For crypto payments, we only require the transaction hash for verification.</p>
+
+            <h3>2.3 Automatically Collected Information</h3>
+            <p>When you visit our website, we may automatically collect:</p>
+            <ul>
+                <li>IP address</li>
+                <li>Browser type and version</li>
+                <li>Device type</li>
+                <li>Pages visited and time spent</li>
+                <li>Referring website</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>3. How We Use Your Information</h2>
+            <p>We use your information to:</p>
+            <ul>
+                <li>Process and confirm your vehicle rental booking</li>
+                <li>Deliver the vehicle to your specified location</li>
+                <li>Communicate with you about your booking</li>
+                <li>Send booking confirmation emails</li>
+                <li>Improve our website and services</li>
+                <li>Comply with legal obligations</li>
+                <li>Prevent fraud and ensure security</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>4. Information Sharing</h2>
+            <p>We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:</p>
+            <ul>
+                <li><strong>Payment Processors:</strong> To process your payment securely</li>
+                <li><strong>Legal Requirements:</strong> If required by law or to protect our rights</li>
+                <li><strong>Service Providers:</strong> Trusted third parties who assist in operating our website (bound by confidentiality)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>5. Tracking Technologies</h2>
+            <p>We use the following tracking technologies to improve your experience:</p>
+
+            <div class="privacy-box">
+                <h4>Google Analytics</h4>
+                <p>Collects anonymous usage data to help us understand how visitors interact with our website.</p>
+            </div>
+
+            <div class="privacy-box">
+                <h4>Facebook/Meta Pixel</h4>
+                <p>Used for advertising and measuring the effectiveness of our marketing campaigns.</p>
+            </div>
+
+            <div class="privacy-box">
+                <h4>TikTok Pixel</h4>
+                <p>Used for advertising and measuring the effectiveness of our TikTok marketing campaigns.</p>
+            </div>
+
+            <div class="privacy-box">
+                <h4>Snapchat Pixel</h4>
+                <p>Used for advertising and measuring the effectiveness of our Snapchat marketing campaigns.</p>
+            </div>
+
+            <p>You can opt out of tracking by adjusting your browser settings or using ad-blocking tools.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>6. Data Security</h2>
+            <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+            <p>Our website uses SSL encryption (HTTPS) to secure all data transmitted between your browser and our servers.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>7. Data Retention</h2>
+            <p>We retain your personal information for as long as necessary to fulfill the purposes outlined in this policy, unless a longer retention period is required by law.</p>
+            <p>Booking records are retained for a minimum of 2 years for accounting and legal purposes.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>8. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access the personal information we hold about you</li>
+                <li>Request correction of inaccurate information</li>
+                <li>Request deletion of your personal information</li>
+                <li>Object to the processing of your data</li>
+                <li>Withdraw consent at any time</li>
+            </ul>
+            <p>To exercise these rights, contact us at <strong>support@rentcars.ae</strong>.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>9. Children's Privacy</h2>
+            <p>Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>10. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page with an updated revision date.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>11. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us:</p>
+            <p><strong>Email:</strong> support@rentcars.ae<br><strong>Location:</strong> Dubai, United Arab Emirates</p>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg></div>
+                    <div class="logo-text">Dubai<span>Rent</span>Cars</div>
+                </a>
+                <p>Dubai's premier supercar rental service.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Fleet</h4>
+                <a href="index.html">Supercars</a>
+                <a href="index.html">Luxury Cars</a>
+                <a href="index.html">Sports Cars</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="mailto:support@rentcars.ae">support@rentcars.ae</a>
+                <a href="#">Dubai, UAE</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DubaiRentCars - All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

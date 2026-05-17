@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | DubaiRentCars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="tracking-pixels.js"></script>
+    <style>
+        :root {
+            --bg-primary: #f8fafc; --bg-secondary: #ffffff; --accent: #2563eb; --accent-light: #3b82f6;
+            --text-primary: #0f172a; --text-secondary: #475569; --text-muted: #94a3b8;
+            --border: #e2e8f0; --border-light: #f1f5f9; --success: #059669; --danger: #dc2626;
+            --gradient-1: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
+
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .header.scrolled { box-shadow: var(--shadow-md); }
+        .header-inner { max-width: 1440px; margin: 0 auto; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { width: 44px; height: 44px; background: var(--gradient-1); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .logo-icon svg { width: 26px; height: 26px; fill: white; }
+        .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; color: var(--text-primary); }
+        .logo-text span { color: var(--accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+        .mobile-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 24px; cursor: pointer; }
+
+        .page-hero { padding: 120px 30px 60px; background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%); text-align: center; }
+        .page-hero h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 16px; }
+        .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+        .page-content { max-width: 900px; margin: 0 auto; padding: 60px 30px; }
+        .content-section { margin-bottom: 40px; }
+        .content-section h2 { font-size: 24px; font-weight: 700; margin-bottom: 16px; color: var(--accent); padding-bottom: 8px; border-bottom: 2px solid var(--border-light); }
+        .content-section h3 { font-size: 18px; font-weight: 600; margin: 20px 0 10px; }
+        .content-section p { color: var(--text-secondary); margin-bottom: 12px; font-size: 15px; }
+        .content-section ul { margin: 12px 0; padding-left: 24px; }
+        .content-section li { color: var(--text-secondary); margin-bottom: 6px; font-size: 15px; }
+        .content-section li::marker { color: var(--accent); }
+
+        .last-updated { display: inline-block; padding: 6px 14px; background: rgba(37,99,235,0.08); border-radius: 50px; font-size: 13px; color: var(--accent); margin-bottom: 30px; }
+
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 30px 30px; margin-top: 80px; }
+        .footer-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-brand p { color: var(--text-secondary); font-size: 14px; margin-top: 16px; }
+        .footer-col h4 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .footer-col a { display: block; color: var(--text-secondary); text-decoration: none; font-size: 14px; padding: 6px 0; transition: color 0.3s; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { max-width: 1440px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; }
+        .footer-bottom p { color: var(--text-muted); font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .header-inner { padding: 0 16px; }
+            .page-hero { padding: 100px 20px 40px; }
+            .page-content { padding: 40px 20px; }
+            .footer-inner { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .logo-text { font-size: 18px; }
+            .logo-icon { width: 36px; height: 36px; }
+            .page-hero h1 { font-size: 28px; }
+            .content-section h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+                </div>
+                <div class="logo-text">Dubai<span>Rent</span>Cars</div>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Supercars</a></li>
+                    <li><a href="index.html">Luxury</a></li>
+                    <li><a href="index.html">Sports</a></li>
+                    <li><a href="index.html">SUVs</a></li>
+                    <li><a href="index.html#fleet">Fleet</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-toggle">&#9776;</button>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1>Terms & <span style="color: var(--accent);">Conditions</span></h1>
+        <p>Please read these terms carefully before booking with us.</p>
+    </section>
+
+    <main class="page-content">
+        <span class="last-updated">Last updated: May 2026</span>
+
+        <div class="content-section">
+            <h2>1. General Terms</h2>
+            <p>By booking a vehicle through DubaiRentCars ("the Company"), you ("the Customer") agree to be bound by these Terms and Conditions. These terms apply to all rentals made through our website, phone, or in person.</p>
+            <p>The Company reserves the right to modify these terms at any time. Continued use of our services constitutes acceptance of any changes.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>2. Booking & Payment</h2>
+            <h3>2.1 Booking Confirmation</h3>
+            <p>A booking is confirmed only after full payment has been received and a confirmation email has been sent to the customer.</p>
+
+            <h3>2.2 Payment Methods</h3>
+            <p>We accept the following payment methods:</p>
+            <ul>
+                <li>Credit/Debit Cards (Visa, Mastercard, American Express)</li>
+                <li>USDT (Tether) via TRC20 network</li>
+            </ul>
+
+            <h3>2.3 Pricing</h3>
+            <p>All prices are listed in USD and include the rental rate and free delivery. Prices are subject to change without notice. The price quoted at the time of booking is the price you will pay.</p>
+
+            <h3>2.4 No Deposit</h3>
+            <p>DubaiRentCars does not require a security deposit for any vehicle rental. The total amount due is the rental rate multiplied by the number of rental days.</p>
+
+            <h3>2.5 Refunds</h3>
+            <p>Refund requests must be made at least 48 hours before the scheduled delivery date. Refunds will be processed within 5-7 business days to the original payment method.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>3. Rental Requirements</h2>
+            <h3>3.1 Age Requirement</h3>
+            <p>The minimum age to rent a vehicle is 21 years. Drivers under 25 may be subject to additional requirements.</p>
+
+            <h3>3.2 Valid License</h3>
+            <p>Customers must present a valid driving license from their country of origin along with an International Driving Permit (IDP) if required by UAE law.</p>
+
+            <h3>3.3 Identification</h3>
+            <p>A valid passport or Emirates ID is required at the time of vehicle delivery.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>4. Vehicle Usage</h2>
+            <h3>4.1 Permitted Use</h3>
+            <p>Vehicles may only be driven by the registered driver on paved roads within the UAE. Off-road driving is strictly prohibited.</p>
+
+            <h3>4.2 Prohibited Activities</h3>
+            <ul>
+                <li>Racing, speed testing, or any competitive driving</li>
+                <li>Driving under the influence of alcohol or drugs</li>
+                <li>Subleasing or lending the vehicle to another person</li>
+                <li>Using the vehicle for illegal activities</li>
+                <li>Towing or pushing any object</li>
+                <li>Driving outside the UAE borders</li>
+            </ul>
+
+            <h3>4.3 Mileage</h3>
+            <p>Standard mileage allowance is 250 km per day. Additional kilometers will be charged at AED 5 per km.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>5. Insurance & Liability</h2>
+            <h3>5.1 Insurance Coverage</h3>
+            <p>All vehicles come with comprehensive insurance coverage. The customer is responsible for a deductible of AED 3,000 in case of damage.</p>
+
+            <h3>5.2 Customer Liability</h3>
+            <p>The customer is liable for:</p>
+            <ul>
+                <li>Traffic fines and violations incurred during the rental period</li>
+                <li>Damage caused by negligence or violation of these terms</li>
+                <li>Loss or damage to vehicle keys (AED 2,000 replacement fee)</li>
+                <li>Interior damage or excessive cleaning fees</li>
+            </ul>
+
+            <h3>5.3 Accidents</h3>
+            <p>In case of an accident, the customer must immediately contact the police and obtain a police report. The Company must be notified within 24 hours.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>6. Delivery & Return</h2>
+            <h3>6.1 Free Delivery</h3>
+            <p>We offer free delivery within Dubai. Delivery to other emirates may incur additional charges.</p>
+
+            <h3>6.2 Delivery Time</h3>
+            <p>Vehicles will be delivered at the agreed date and time. A grace period of 30 minutes applies. Late deliveries beyond 2 hours may result in a rescheduled delivery.</p>
+
+            <h3>6.3 Vehicle Inspection</h3>
+            <p>Customers must inspect the vehicle at delivery and note any existing damage on the handover form. Failure to do so may result in liability for pre-existing damage.</p>
+
+            <h3>6.4 Late Return</h3>
+            <p>Late returns will be charged at the daily rate. Returns more than 6 hours late will be charged as an additional full day.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>7. Cancellation Policy</h2>
+            <ul>
+                <li><strong>More than 48 hours before delivery:</strong> Full refund</li>
+                <li><strong>24-48 hours before delivery:</strong> 50% refund</li>
+                <li><strong>Less than 24 hours:</strong> No refund</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>8. Contact</h2>
+            <p>For any questions regarding these terms, please contact us at:</p>
+            <p><strong>Email:</strong> support@rentcars.ae<br><strong>Location:</strong> Dubai, UAE</p>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg></div>
+                    <div class="logo-text">Dubai<span>Rent</span>Cars</div>
+                </a>
+                <p>Dubai's premier supercar rental service.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Fleet</h4>
+                <a href="index.html">Supercars</a>
+                <a href="index.html">Luxury Cars</a>
+                <a href="index.html">Sports Cars</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="mailto:support@rentcars.ae">support@rentcars.ae</a>
+                <a href="#">Dubai, UAE</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DubaiRentCars - All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

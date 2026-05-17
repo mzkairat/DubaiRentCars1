@@ -1,0 +1,20 @@
+[
+  {
+    "id": "DRC-A9D6F4DC",
+    "carName": "Lamborghini Huracan",
+    "carImage": "test.jpg",
+    "pricePerDay": 589.56,
+    "days": 3,
+    "totalAmount": "1768.68",
+    "paymentMethod": "crypto",
+    "customer": {
+      "fullName": "Test User",
+      "phone": "+971501234567",
+      "email": "test@example.com",
+      "address": "Dubai Marina",
+      "deliveryDate": "2026-06-01"
+    },
+    "status": "pending",
+    "createdAt": "2026-05-17T00:23:14.708988"
+  }
+]
